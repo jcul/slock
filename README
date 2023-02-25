@@ -2,6 +2,11 @@ slock - simple screen locker
 ============================
 simple screen locker utility for X.
 
+Applied patches
+---------------
+https://tools.suckless.org/slock/patches/mediakeys/
+https://tools.suckless.org/slock/patches/pam_auth/
+https://tools.suckless.org/slock/patches/quickcancel/
 
 Requirements
 ------------
