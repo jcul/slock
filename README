@@ -8,6 +8,21 @@ https://tools.suckless.org/slock/patches/mediakeys/
 https://tools.suckless.org/slock/patches/pam_auth/
 https://tools.suckless.org/slock/patches/quickcancel/
 
+slock-pam-rhost-for-nonzero-pw.diff
+
+This patch sets PAM_RHOST to a dummy value, if a password has been entered.
+If using fingerprint login, there is no way to tell PAM to skip the fingerprint.
+If you want to use password login it is not possible,
+For example, because your fingerprint reader is broken, or you burnt your finger
+tip.
+
+There are a few ways around this, use a different PAM service file when a
+password has been entered, that does not enable fingerprint, use
+pam-fprint-grosshack, or simply set RHOST so finerprint will be skipped.
+
+So now if password is empty it will use fingerprint, else it will use password
+only.
+
 Requirements
 ------------
 In order to build slock you need the Xlib header files.

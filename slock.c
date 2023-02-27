@@ -221,6 +221,14 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 				}
 				XSync(dpy, False);
 
+				// If a password has been entered, set RHOST
+				// This will cause pam to skip authentication methods like fingerprints
+				// An alternative would be to have two different pam service files
+				// or to use pam-fprint-grosshack, but this way is nice and simple
+				if (len > 0) {
+					pam_set_item(pamh, PAM_RHOST, "_dummy");
+				}
+
 				if (retval == PAM_SUCCESS)
 					retval = pam_authenticate(pamh, 0);
 				if (retval == PAM_SUCCESS)
